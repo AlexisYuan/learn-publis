@@ -1,0 +1,19 @@
+version: '3.0'
+
+services:
+  vue-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: vue-app
+    container_name: vue-app
+    restart: always
+    environment:
+      - TZ=Asia/Shanghai
+    ports:
+      - '5000:80'
+    networks:
+      - vue-network
+
+networks:
+  vue-network:

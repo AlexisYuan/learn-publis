@@ -20,7 +20,7 @@ RUN pnpm install
 RUN pnpm run build
 
 # 第二阶段：部署
-FROM nginx:alpine
+FROM nginx:latest
 
 # 时区
 ENV TZ=Asia/Shanghai

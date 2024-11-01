@@ -12,7 +12,7 @@ COPY . .
 
 RUN yarn run build
 
-RUN cat ./dist
+RUN cat /app/dist
 
 FROM nginx:latest
 

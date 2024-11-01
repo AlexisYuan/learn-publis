@@ -12,7 +12,8 @@ COPY . .
 
 RUN yarn run build
 
-RUN cat /app/dist
+# 在构建后查看 dist 目录
+RUN ls -la /app/dist  # 列出 dist 目录中的文件
 
 FROM nginx:latest
 

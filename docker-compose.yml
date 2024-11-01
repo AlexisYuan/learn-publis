@@ -3,18 +3,12 @@ version: '3.0'
 services:
   frontend-app:
     build:
-      context: .
+      context: . # 当前目录
       dockerfile: Dockerfile
-    volumes:
-      - ./dist:/app/dist # 将构建输出挂载到 ./dist
-    environment:
-      - HTTP_PROXY=http://127.0.0.1:7890
-      - HTTPS_PROXY=http://127.0.0.1:7890
 
   nginx:
     image: nginx:latest
     ports:
       - '80:80'
     volumes:
-      - ./dist:/usr/share/nginx/html # 映射前端构建输出到 Nginx
-
+      - ./dist:/usr/share/nginx/html # 映射构建输出到 Nginx

@@ -1,22 +1,21 @@
-# 第一阶段：构建
+# 使用 Node.js 镜像作为构建环境
 FROM node:latest AS build
 
 # 设置工作目录
 WORKDIR /app
 
+# 复制 package.json 和 yarn.lock（或 package-lock.json）
 COPY package*.json ./
 
-RUN yarn install
+RUN npm config set registry http://registry.npm.taobao.org/
 
+# 安装依赖
+RUN npm install
+
+# 复制项目文件
 COPY . .
 
-RUN yarn run build
+# 构建项目
+RUN npm run build
 
-# 在构建后查看 dist 目录
-RUN ls -la /app/dist  # 列出 dist 目录中的文件
-
-FROM nginx:latest
-
-COPY --from=build /app/dist /usr/share/nginx/html
-
-
+# Nginx 服务不需要单独的 Dockerfile，因为它将使用官方镜像

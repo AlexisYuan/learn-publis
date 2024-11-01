@@ -1,6 +1,13 @@
 version: '3.0'
 
 services:
+  frontend-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      volumes:
+        - ./dist:/app/dist # 将构建输出挂载到 ./dist
+
   nginx:
     image: nginx:latest
     ports:
@@ -8,7 +15,3 @@ services:
     volumes:
       - ./dist:/usr/share/nginx/html # 映射前端构建输出到 Nginx
 
-  frontend-app:
-    build:
-      context: .
-      dockerfile: Dockerfile

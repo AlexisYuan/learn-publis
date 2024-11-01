@@ -7,6 +7,9 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./dist:/app/dist # 将构建输出挂载到 ./dist
+     environment:
+      - HTTP_PROXY=http://127.0.0.1:7890
+      - HTTPS_PROXY=http://127.0.0.1:7890
 
   nginx:
     image: nginx:latest

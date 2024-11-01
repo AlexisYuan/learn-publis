@@ -12,6 +12,8 @@ COPY . .
 
 RUN yarn run build
 
+RUN cat ./dist
+
 FROM nginx:latest
 
 COPY --from=build /app/dist /usr/share/nginx/html
